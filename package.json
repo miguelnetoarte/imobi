@@ -1,0 +1,21 @@
+{
+  "name": "imobi",
+  "version": "1.0.0",
+  "description": "Calculadora de tabelas para financiamento imobiliário",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguenetoarte/imobi.git"
+  },
+  "keywords": [
+    "financiamento",
+    "imobiliário",
+    "imobi",
+    "calculadora"
+  ],
+  "author": "Miguel Neto",
+  "license": "MIT"
+}
