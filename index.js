@@ -1,4 +1,4 @@
-const { calculator } = require('./src/calculator');
+const calculator = require('./src/calculator');
 
 const imobi = {
     calculator 
