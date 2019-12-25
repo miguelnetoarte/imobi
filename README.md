@@ -2,8 +2,10 @@
 
 Calculadora de tabelas para financiamento imobiliário
 
-## Parâmetros
+## Parâmetro options
 
+| options        | parâmetro   |
+|----------------|---------------------|
 | table          | tabela de cálculo   |
 | financedAmount | Valor financiado    |
 | deadline       | Número de meses     |
