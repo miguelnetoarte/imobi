@@ -27,27 +27,34 @@ const sac = function(options) {
     for (let index = 1; index <= deadline; index++) {
 
         let debitBalance = calcDebitBalance(index, financedValue, amortization);
-        let interestRate = calcInterestRate(debitBalance, amortization, annualTaxRate);
+        let interestRate = formatValue(calcInterestRate(debitBalance, amortization, annualTaxRate),2);
+        let installmentValue = formatValue(formatValue(amortization, 2) + interestRate, 2);
+        let amortizationResult = formatValue(amortization, 2);
+        installmentsTotal = formatValue(installmentsTotal + installmentValue, 2);
+        amortizationTotal = formatValue(amortizationTotal + amortizationResult, 2);
+        interestRateTotal = formatValue(interestRateTotal + interestRate, 2);
+
 
         installments = {
             ...installments,
             [index]: {
                 installment: index,
-                amortization: formatValue(amortization, 2),
-                interestRate: formatValue(interestRate, 2),
-                installmentValue: formatValue(amortization + interestRate, 2),
+                amortization: amortizationResult,
+                interestRate: interestRate,
+                installmentValue: installmentValue,
                 debitBalance: formatValue(debitBalance, 2)
             }
         }
 
         summary = {
-            installments,
+            installments, 
+            deadline,
             installmentsTotal,
             amortizationTotal,
             interestRateTotal
         }
-
     }
+
     return summary;
 }
 
