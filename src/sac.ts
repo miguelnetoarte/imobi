@@ -10,7 +10,6 @@ const calcInterestRate = function(debitBalance:number, amortization:number, annu
 }
 
 const calcInstallment = function(amortization:number, interestRate:number, admTaxesRate:number, insurence:any) {
-    console.log(admTaxesRate, insurence);
     return formatValue(formatValue(amortization, 2) + interestRate + admTaxesRate + insurence.insurenceValue, 2);
 }
 
