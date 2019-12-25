@@ -48,7 +48,7 @@ const sac = function(options) {
         }
 
     }
-    return options;
+    return summary;
 }
 
 module.exports = sac;
