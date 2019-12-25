@@ -61,6 +61,7 @@ const sac = function(options:any) {
             deadline,
             installmentsTotal,
             amortizationTotal,
+            financedValue,
             interestRateTotal
         }
     }
