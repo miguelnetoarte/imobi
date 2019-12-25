@@ -1,4 +1,5 @@
 import formatValue from './formatValue';
+import insurenceCalc from './insurenceCalc';
 
 const calcDebitBalance = function(currentInstallmentNumber:number, financedValue:number, amortization:number){
     return financedValue - (currentInstallmentNumber * amortization);
@@ -8,12 +9,19 @@ const calcInterestRate = function(debitBalance:number, amortization:number, annu
     return (debitBalance + amortization) * (annualTaxRate/12)/100;
 }
 
+const calcInstallment = function(amortization:number, interestRate:number, admTaxesRate:number, insurence:any) {
+    console.log(admTaxesRate, insurence);
+    return formatValue(formatValue(amortization, 2) + interestRate + admTaxesRate + insurence.insurenceValue, 2);
+}
+
 const sac = function(options:any) {
     const { 
         financedAmount, 
         expenses, 
         deadline, 
-        annualTaxRate 
+        annualTaxRate,
+        admTaxesRate,
+        insurence 
     } = options;
 
     let installments = {};
@@ -28,7 +36,8 @@ const sac = function(options:any) {
 
         let debitBalance = calcDebitBalance(index, financedValue, amortization);
         let interestRate = formatValue(calcInterestRate(debitBalance, amortization, annualTaxRate),2);
-        let installmentValue = formatValue(formatValue(amortization, 2) + interestRate, 2);
+        let insurenceResult = insurenceCalc(debitBalance + amortization, insurence.estateValue, insurence.mipTaxesRate, insurence.dfiTaxesRate);
+        let installmentValue = calcInstallment(amortization, interestRate, admTaxesRate, insurenceResult);
         let amortizationResult = formatValue(amortization, 2);
         installmentsTotal = formatValue(installmentsTotal + installmentValue, 2);
         amortizationTotal = formatValue(amortizationTotal + amortizationResult, 2);
@@ -41,6 +50,8 @@ const sac = function(options:any) {
                 installment: index,
                 amortization: amortizationResult,
                 interestRate: interestRate,
+                admTaxesRate: admTaxesRate,
+                insurence: insurenceResult,
                 installmentValue: installmentValue,
                 debitBalance: formatValue(debitBalance, 2)
             }
@@ -54,7 +65,6 @@ const sac = function(options:any) {
             interestRateTotal
         }
     }
-
     return summary;
 }
 
