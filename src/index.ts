@@ -1,7 +1,7 @@
 import calculator from './calculator';
 
-const imobi = {
+const imobi:any = {
     calculator 
 }
 
-export imobi;
+export = imobi;

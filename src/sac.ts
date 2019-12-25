@@ -1,14 +1,14 @@
-const formatValue = require('./formatValue');
+import formatValue from './formatValue';
 
-const calcDebitBalance = function(currentInstallmentNumber, financedValue, amortization){
+const calcDebitBalance = function(currentInstallmentNumber:number, financedValue:number, amortization:number){
     return financedValue - (currentInstallmentNumber * amortization);
 }
 
-const calcInterestRate = function(debitBalance, amortization, annualTaxRate){
+const calcInterestRate = function(debitBalance:number, amortization:number, annualTaxRate:number){
     return (debitBalance + amortization) * (annualTaxRate/12)/100;
 }
 
-const sac = function(options) {
+const sac = function(options:any) {
     const { 
         financedAmount, 
         expenses, 
@@ -58,4 +58,4 @@ const sac = function(options) {
     return summary;
 }
 
-module.exports = sac;
+export = sac;

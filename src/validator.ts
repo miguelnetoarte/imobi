@@ -1,7 +1,7 @@
-const tables = require('./tables');
+import tables from './tables';
 const doc = `https://github.com/miguenetoarte/imobi`;
 
-const validator = function(options) {
+const validator = function(options: any) {
     if (!options) throw Error(`
     object options doesn't found 
     \nsee the example: \n
@@ -13,7 +13,6 @@ const validator = function(options) {
         "expenses": 0
     })
     or you can read documentation in ${doc}\n\n`);
-
     if (!tables[options.table.toLocaleUpperCase()]) throw Error(`table value not found or not exists, available tables: SAC, PRICE\n\n`)
     if (!options.financedAmount || options.financedAmount === 0) throw Error(`param financedAmount not found or 0 in options\n\n`);
     if (!options.deadline) throw Error(`param deadline not found in options\n\n`);
@@ -25,4 +24,4 @@ const validator = function(options) {
     return options;
 }
 
-module.exports = validator;
+export = validator;

@@ -1,8 +1,8 @@
-const sac = require('./sac');
-const validator = require('./validator');
-const tables = require('./tables');
+import sac from './sac';
+import validator from './validator';
+import tables from './tables';
 
-const calculator = function(options) {
+const calculator = function(options:any) {
     const paramiters = validator(options);
     let result = null;
     switch (paramiters.table.toLocaleUpperCase()) {
@@ -18,4 +18,4 @@ const calculator = function(options) {
     return result;
 }
 
-module.exports = calculator;
+export = calculator;
