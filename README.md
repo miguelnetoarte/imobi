@@ -5,7 +5,6 @@ Calculadora de tabelas para financiamento imobiliário
 ## Parâmetros
 
 | table          | tabela de cálculo   |
-|----------------|---------------------|
 | financedAmount | Valor financiado    |
 | deadline       | Número de meses     |
 | annualTaxRate  | Taxa anual de juros |
