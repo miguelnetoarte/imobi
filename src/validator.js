@@ -15,11 +15,14 @@ const validator = function(options) {
     or you can read documentation in ${doc}\n\n`);
 
     if (!tables[options.table.toLocaleUpperCase()]) throw Error(`table value not found or not exists, available tables: SAC, PRICE\n\n`)
-    if (!options.financedAmount) throw Error(`param financedAmount not found in options\n\n`);
+    if (!options.financedAmount || options.financedAmount === 0) throw Error(`param financedAmount not found or 0 in options\n\n`);
     if (!options.deadline) throw Error(`param deadline not found in options\n\n`);
     if (!options.annualTaxRate) throw Error(`param annualTaxRate not found in options\n\n`);
-    
-    return true;
+    options.expenses = options.expenses ? options.expenses : 0;
+    options.financedAmount = Number(options.financedAmount);
+    options.deadline = Number(options.deadline);
+    options.annualTaxRate = Number(options.annualTaxRate);
+    return options;
 }
 
 module.exports = validator;

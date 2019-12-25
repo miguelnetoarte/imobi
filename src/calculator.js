@@ -3,11 +3,11 @@ const validator = require('./validator');
 const tables = require('./tables');
 
 const calculator = function(options) {
-    validator(options);
+    const paramiters = validator(options);
     let result = null;
-    switch (options.table.toLocaleUpperCase()) {
+    switch (paramiters.table.toLocaleUpperCase()) {
         case tables.SAC:
-            result = sac(options);
+            result = sac(paramiters);
             break;
         case tables.PRICE:
             result = tables.PRICE;
