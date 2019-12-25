@@ -9,7 +9,7 @@ Calculadora de tabelas para financiamento imobiliário
 
 ```js
 
-const imobi = require('imobi');
+import imobi from 'imobi';
 
 const data = imobi.calculator({
         "table": "SAC",

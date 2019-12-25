@@ -1,6 +1,6 @@
-const tables = {
+const tables: any = {
     "SAC": "SAC",
     "PRICE": "PRICE"
 }
 
-module.exports = tables;
+export = tables;
