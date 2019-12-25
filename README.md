@@ -2,7 +2,7 @@
 
 Calculadora de tabelas para financiamento imobiliário
 
-## Parametros
+## Parâmetros
 
 | table          | tabela de cálculo   |
 |----------------|---------------------|
