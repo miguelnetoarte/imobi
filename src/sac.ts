@@ -5,7 +5,7 @@ const calcDebitBalance = function(currentInstallmentNumber:number, financedValue
 }
 
 const calcInterestRate = function(debitBalance:number, amortization:number, annualTaxRate:number){ 
-    return (debitBalance + amortization) * (annualTaxRate/12);
+    return (debitBalance + amortization) * ((annualTaxRate/12)/100);
 }
 
 const calcInstallment = function(amortization:number, interestRate:number, admTaxesRate:number, insurence:any) {
