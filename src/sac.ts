@@ -1,25 +1,26 @@
 import insurenceCalc from './insurenceCalc';
+import tables from './tables';
 
-const calcDebitBalance = function(currentInstallmentNumber:number, financedValue:number, amortization:number){
+const calcDebitBalance = function (currentInstallmentNumber: number, financedValue: number, amortization: number) {
     return financedValue - (currentInstallmentNumber * amortization);
 }
 
-const calcInterestRate = function(debitBalance:number, amortization:number, annualTaxRate:number){ 
-    return (debitBalance + amortization) * ((annualTaxRate/12)/100);
+const calcInterestRate = function (debitBalance: number, amortization: number, annualTaxRate: number) {
+    return (debitBalance + amortization) * ((annualTaxRate / 12) / 100);
 }
 
-const calcInstallment = function(amortization:number, interestRate:number, admTaxesRate:number, insurence:any) {
+const calcInstallment = function (amortization: number, interestRate: number, admTaxesRate: number, insurence: any) {
     return amortization + interestRate + admTaxesRate + insurence.insurenceValue;
 }
 
-const sac = function(options:any) {
-    const { 
-        financedAmount, 
-        expenses, 
-        deadline, 
+const sac = function (options: any) {
+    const {
+        financedAmount,
+        expenses,
+        deadline,
         annualTaxRate,
         admTaxesRate,
-        insurence 
+        insurence
     } = options;
 
     let installments = {};
@@ -56,12 +57,13 @@ const sac = function(options:any) {
         }
 
         summary = {
-            installments, 
+            installments,
             deadline,
             installmentsTotal,
             amortizationTotal,
             financedValue,
-            interestRateTotal
+            interestRateTotal,
+            table: tables.SAC
         }
     }
     return summary;
