@@ -1,11 +1,9 @@
-import formatValue from './formatValue';
-
 const insurenceCalc = function(debitBalance:number, estateValue:number, mipTaxesRate:number, dfiTaxesRate:number){
-    let mip:number = formatValue(debitBalance * mipTaxesRate, 2);
-    let dfi:number = formatValue(estateValue * dfiTaxesRate, 2);
+    let mip:number = debitBalance * mipTaxesRate;
+    let dfi:number = estateValue * dfiTaxesRate;
 
     return {
-        insurenceValue: formatValue(mip + dfi, 2),
+        insurenceValue: mip + dfi,
         mip,
         dfi
     }
