@@ -1,6 +1,6 @@
 {
   "name": "imobi",
-  "version": "1.5.3",
+  "version": "1.5.3-beta",
   "description": "Calculadora de tabelas para financiamento imobiliário",
   "main": "lib/index.js",
   "types": "lib",
@@ -12,9 +12,12 @@
     "url": "git+https://github.com/miguenetoarte/imobi.git"
   },
   "keywords": [
+    "sac",
+    "price",
     "financiamento",
     "imobiliário",
     "imobi",
+    "imobijs",
     "calculadora"
   ],
   "author": "Miguel Neto",

@@ -1,16 +1,15 @@
-import formatValue from './formatValue';
 import insurenceCalc from './insurenceCalc';
 
 const calcDebitBalance = function(currentInstallmentNumber:number, financedValue:number, amortization:number){
     return financedValue - (currentInstallmentNumber * amortization);
 }
 
-const calcInterestRate = function(debitBalance:number, amortization:number, annualTaxRate:number){
-    return (debitBalance + amortization) * (annualTaxRate/12)/100;
+const calcInterestRate = function(debitBalance:number, amortization:number, annualTaxRate:number){ 
+    return (debitBalance + amortization) * (annualTaxRate/12);
 }
 
 const calcInstallment = function(amortization:number, interestRate:number, admTaxesRate:number, insurence:any) {
-    return formatValue(formatValue(amortization, 2) + interestRate + admTaxesRate + insurence.insurenceValue, 2);
+    return amortization + interestRate + admTaxesRate + insurence.insurenceValue;
 }
 
 const sac = function(options:any) {
@@ -34,13 +33,13 @@ const sac = function(options:any) {
     for (let index = 1; index <= deadline; index++) {
 
         let debitBalance = calcDebitBalance(index, financedValue, amortization);
-        let interestRate = formatValue(calcInterestRate(debitBalance, amortization, annualTaxRate),2);
+        let interestRate = calcInterestRate(debitBalance, amortization, annualTaxRate);
         let insurenceResult = insurenceCalc(debitBalance + amortization, insurence.estateValue, insurence.mipTaxesRate, insurence.dfiTaxesRate);
         let installmentValue = calcInstallment(amortization, interestRate, admTaxesRate, insurenceResult);
-        let amortizationResult = formatValue(amortization, 2);
-        installmentsTotal = formatValue(installmentsTotal + installmentValue, 2);
-        amortizationTotal = formatValue(amortizationTotal + amortizationResult, 2);
-        interestRateTotal = formatValue(interestRateTotal + interestRate, 2);
+        let amortizationResult = amortization;
+        installmentsTotal = installmentsTotal + installmentValue;
+        amortizationTotal = amortizationTotal + amortizationResult;
+        interestRateTotal = interestRateTotal + interestRate;
 
 
         installments = {
@@ -52,7 +51,7 @@ const sac = function(options:any) {
                 admTaxesRate: admTaxesRate,
                 insurence: insurenceResult,
                 installmentValue: installmentValue,
-                debitBalance: formatValue(debitBalance, 2)
+                debitBalance: debitBalance
             }
         }
 
