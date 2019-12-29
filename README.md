@@ -10,7 +10,7 @@ Calculadora de tabelas para financiamento imobiliário
 | financedAmount      | number | Valor financiado                                              | obrigatório  |
 | deadline            | number | Número de meses                                               | obrigatório  |
 | annualTaxRate       | number | Taxa anual de juros                                           | obrigatório  |
-| firstInstallmentDue | Date   | Vencimento da primeira prestação devida                       | opcional     |
+| firstInstallmentDue | Date   | Vencimento da primeira prestação                              | opcional     |
 | gracePeriod         | number | Periodo de carencia                                           | opcional     |
 | admTaxesRate        | number | Taxa de administração                                         | opcional     |
 | expenses            | number | Despesas                                                      | opcional     |
