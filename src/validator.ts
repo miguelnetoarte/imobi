@@ -25,7 +25,7 @@ const validator = function (options: any) {
     if (!options.financedAmount || options.financedAmount === 0) throw Error(`param financedAmount not found or 0 in options\n\n`);
     if (!options.deadline) throw Error(`param deadline not found in options\n\n`);
     if (!options.annualTaxRate) throw Error(`param annualTaxRate not found in options\n\n`);
-    if (Number(options.gracePeriod) >=  Number(options.deadline)) throw Error(`param gracePeriod not excepted, look at deadline\n\n`);
+    if (Number(options.gracePeriod) >= Number(options.deadline)) throw Error(`param gracePeriod not excepted, look at deadline\n\n`);
     options.expenses = options.expenses ? Number(options.expenses) : 0;
     options.financedAmount = Number(options.financedAmount);
     options.deadline = Number(options.deadline);
