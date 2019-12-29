@@ -28,10 +28,10 @@ import imobi from 'imobi';
 const data = imobi.calculator({
     "table": "SAC",
     "financedAmount": 150000,
-    "deadline": 24,
+    "deadline": 5,
     "annualTaxRate": 0.72,
     "admTaxesRate": 25,
-    "gracePeriod": 6,
+    "gracePeriod": 2,
     "firstInstallmentDue": new Date("2020-01-12"),
     "insurence": {
         "estateValue": 200000,
@@ -43,3 +43,52 @@ const data = imobi.calculator({
 
 ```
 
+# Sistema Frânces de amortização (PRICE)
+
+```js
+
+import imobi from 'imobi';
+
+const data = imobi.calculator({
+    "table": "PRICE",
+    "financedAmount": 150000,
+    "deadline": 5,
+    "annualTaxRate": 0.72,
+    "admTaxesRate": 25,
+    "gracePeriod": 2,
+    "firstInstallmentDue": new Date("2020-01-12"),
+    "insurence": {
+        "estateValue": 200000,
+        "mipTaxesRate": 0.0001737,
+        "dfiTaxesRate": 0.0001503,
+    },
+    "expenses": 0
+});
+
+```
+
+## Objeto de resposta
+
+| Atributo          | Tipo   | Descrição                                |
+|-------------------|--------|------------------------------------------|
+| installments      | object | objeto com dados das prestações          |
+| installment       | number | número da prestação                      |
+| amortization      | number | valor da amortização                     |
+| interestRate      | number | valor do juros                           |
+| admTaxesRate      | number | taxa de administração                    |
+| insurence         | object | objeto com dados do seguro               |
+| insurenceValue    | number | valor do seguro                          |
+| mip               | number | valor do MIP                             |
+| dfi               | number | valor do DFI                             |
+| installmentValue  | number | valor da prestação                       |
+| installmentDue    | number | vencimento do valor devido               |
+| debitBalance      | number | valor do saldo devido                    |
+| deadline          | number | prazo calculado                          |
+| installmentsTotal | number | total do saldo devido                    |
+| amortizationTotal | number | total de amortização                     |
+| financedValue     | number | valor financiado                         |
+| interestRateTotal | number | total de juros calculado                 |
+| table             | string | tabela utilizada para calculo            |
+| annualTaxRate     | number | taxa anual de juros utilizada no cálculo |
+| admTaxesRate      | number | taxa de administração                    |
+| gracePeriod       | number | periodo de carencia (PRICE em dev)       |
