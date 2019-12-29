@@ -43,7 +43,7 @@ const data = imobi.calculator({
 
 ```
 
-## Sistema Frânces de amortização (PRICE)
+## Sistema frânces de amortização (PRICE)
 
 ```js
 
