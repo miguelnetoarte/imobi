@@ -12,6 +12,7 @@ const validator = function (options: any) {
         "annualTaxRate": 0.72,
         "admTaxesRate": 25,
         "gracePeriod": 6,
+        "firstInstallmentDue": new Date(),
         "insurence": {
             "estateValue": 200000, 
             "mipTaxesRate": 0.0001737,
@@ -24,6 +25,7 @@ const validator = function (options: any) {
     if (!options.financedAmount || options.financedAmount === 0) throw Error(`param financedAmount not found or 0 in options\n\n`);
     if (!options.deadline) throw Error(`param deadline not found in options\n\n`);
     if (!options.annualTaxRate) throw Error(`param annualTaxRate not found in options\n\n`);
+    if (Number(options.gracePeriod) >=  Number(options.deadline)) throw Error(`param gracePeriod not excepted, look at deadline\n\n`);
     options.expenses = options.expenses ? Number(options.expenses) : 0;
     options.financedAmount = Number(options.financedAmount);
     options.deadline = Number(options.deadline);
@@ -35,6 +37,7 @@ const validator = function (options: any) {
     options.insurence.dfiTaxesRate = !!options.insurence.dfiTaxesRate ? Number(options.insurence.dfiTaxesRate) : 0;
     options.insurence.estateValue = !!options.insurence.estateValue ? Number(options.insurence.estateValue) : 0;
     options.gracePeriod = !!options.gracePeriod ? Number(options.gracePeriod) : 0;
+    options.firstInstallmentDue = !!options.firstInstallmentDue && options.firstInstallmentDue instanceof Date ? options.firstInstallmentDue : null;
 
     return options;
 }

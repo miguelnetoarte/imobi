@@ -1,5 +1,6 @@
 import insurenceCalc from './insurenceCalc';
 import tables from './tables';
+import sumInstallmentDue from './sumInstallmentDue';
 
 const calcDebitBalance = function (currentInstallmentNumber: number, financedValue: number, amortization: number, gracePeriod: number) {
     return financedValue - ((currentInstallmentNumber - gracePeriod) * amortization);
@@ -22,6 +23,7 @@ const sac = function (options: any) {
         admTaxesRate,
         insurence,
         gracePeriod,
+        firstInstallmentDue
     } = options;
 
     let newDeadLine = gracePeriod > 0 && gracePeriod <  deadline ? deadline - gracePeriod : deadline;
@@ -34,13 +36,11 @@ const sac = function (options: any) {
     let summary = {};
     
     for (let index = 1; index <= deadline; index++) {
-        
         if (gracePeriod > 0 && index > gracePeriod && gracePeriod < deadline ) {
-            
             amortization = financedValue / newDeadLine;
         } else if (gracePeriod === 0) {
             amortization = financedValue / deadline;
-        }
+        } 
         
         let debitBalance = calcDebitBalance(index, financedValue, amortization, gracePeriod);
 
@@ -64,6 +64,7 @@ const sac = function (options: any) {
                 admTaxesRate: admTaxesRate,
                 insurence: insurenceResult,
                 installmentValue: installmentValue,
+                installmentDue: sumInstallmentDue(firstInstallmentDue, index),
                 debitBalance: debitBalance
             }
         }
@@ -75,7 +76,10 @@ const sac = function (options: any) {
             amortizationTotal,
             financedValue,
             interestRateTotal,
-            table: tables.SAC
+            table: tables.SAC,
+            annualTaxRate,
+            admTaxesRate,
+            gracePeriod,
         }
     }
     return summary;
