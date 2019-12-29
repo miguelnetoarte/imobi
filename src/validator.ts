@@ -1,7 +1,7 @@
 import tables from './tables';
 const doc = `https://github.com/miguenetoarte/imobi`;
 
-const validator = function(options: any) {
+const validator = function (options: any) {
     if (!options) throw Error(`
     object options doesn't found 
     \nsee the example: \n
@@ -11,6 +11,7 @@ const validator = function(options: any) {
         "deadline": 360,
         "annualTaxRate": 0.72,
         "admTaxesRate": 25,
+        "gracePeriod": 6,
         "insurence": {
             "estateValue": 200000, 
             "mipTaxesRate": 0.0001737,
@@ -28,12 +29,13 @@ const validator = function(options: any) {
     options.deadline = Number(options.deadline);
     options.annualTaxRate = Number(options.annualTaxRate);
     options.admTaxesRate = options.admTaxesRate ? Number(options.admTaxesRate) : 0;
-    
+
     options.insurence = !!options.insurence ? options.insurence : {};
     options.insurence.mipTaxesRate = !!options.insurence.mipTaxesRate ? Number(options.insurence.mipTaxesRate) : 0;
     options.insurence.dfiTaxesRate = !!options.insurence.dfiTaxesRate ? Number(options.insurence.dfiTaxesRate) : 0;
-    options.insurence.estateValue  = !!options.insurence.estateValue ? Number(options.insurence.estateValue) : 0;
-    
+    options.insurence.estateValue = !!options.insurence.estateValue ? Number(options.insurence.estateValue) : 0;
+    options.gracePeriod = !!options.gracePeriod ? Number(options.gracePeriod) : 0;
+
     return options;
 }
 

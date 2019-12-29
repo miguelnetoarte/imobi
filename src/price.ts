@@ -1,4 +1,4 @@
-const price = function() {
+const price = function () {
     return 'price'
 }
 
