@@ -1,5 +1,5 @@
-const sumInstallmentDue = function(firstInstallmentDue: any, currentDeadline: number) {
-    if(firstInstallmentDue instanceof Date && currentDeadline === 1) {
+const sumInstallmentDue = function (firstInstallmentDue: any, currentDeadline: number) {
+    if (firstInstallmentDue instanceof Date && currentDeadline === 1) {
         return firstInstallmentDue;
     } else if (firstInstallmentDue instanceof Date && currentDeadline > 1) {
         let result = new Date(firstInstallmentDue.toDateString());

@@ -1,6 +1,6 @@
 {
   "name": "imobi",
-  "version": "1.8.4-beta",
+  "version": "1.8.5-beta",
   "description": "Calculadora de tabelas para financiamento imobiliário",
   "main": "lib/index.js",
   "types": "lib",

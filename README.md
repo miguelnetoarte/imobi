@@ -91,4 +91,4 @@ const data = imobi.calculator({
 | table             | string | tabela utilizada para calculo            |
 | annualTaxRate     | number | taxa anual de juros utilizada no cálculo |
 | admTaxesRate      | number | taxa de administração                    |
-| gracePeriod       | number | periodo de carencia (PRICE em dev)       |
+| gracePeriod       | number | periodo de carencia                      |
