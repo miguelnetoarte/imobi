@@ -14,6 +14,10 @@ const calcDebitBalance = function (debitBalance: number, amortization: number) {
     return parseFloat(debitBalance.toFixed(4)) - parseFloat(amortization.toFixed(4));
 }
 
+const hasGracePeriod = function (gracePeriod: number, deadline: number) {
+    return gracePeriod > 0 && gracePeriod < deadline;
+}
+
 const price = function (options: any) {
     const {
         financedAmount,
@@ -28,7 +32,7 @@ const price = function (options: any) {
     /**
      * todo: carencia em desenvolvimento
      */
-    let newDeadLine = gracePeriod > 0 && gracePeriod < deadline ? deadline - gracePeriod : deadline;
+    let newDeadLine = hasGracePeriod(gracePeriod, deadline) ? deadline - gracePeriod : deadline;
     let installments = {};
     let financedValue = financedAmount + expenses;
     let amortization = 0;
@@ -36,18 +40,23 @@ const price = function (options: any) {
     let amortizationTotal = 0;
     let interestRateTotal = 0;
     let monthTaxesRate = (annualTaxRate / 12) / 100;
-    let installmentValue = financedValue * (Math.pow(1 + monthTaxesRate, deadline) * monthTaxesRate) / (Math.pow(1 + monthTaxesRate, deadline) - 1)
+    let installmentValue = financedValue * (Math.pow(1 + monthTaxesRate, newDeadLine) * monthTaxesRate) / (Math.pow(1 + monthTaxesRate, newDeadLine) - 1)
     let debitBalance = financedValue;
     let summary = {};
 
     for (let index = 1; index <= deadline; index++) {
-
         let interestRate = calcInterestRate(debitBalance, monthTaxesRate);
-        amortization = calcAmortization(installmentValue, interestRate);
+
+        if (hasGracePeriod(gracePeriod, deadline) && index > gracePeriod) {
+            amortization = calcAmortization(installmentValue, interestRate);
+        } else if (gracePeriod === 0) {
+            amortization = calcAmortization(installmentValue, interestRate);
+        }
+
         debitBalance = calcDebitBalance(debitBalance, amortization);
         let insurenceResult = insurenceCalc(debitBalance + amortization, insurence.estateValue, insurence.mipTaxesRate, insurence.dfiTaxesRate);
 
-        installmentsTotal = installmentsTotal + installmentValue;
+        installmentsTotal = installmentsTotal + (hasGracePeriod(gracePeriod, deadline) && index <= gracePeriod ? interestRate : installmentValue);
         amortizationTotal = amortizationTotal + amortization;
         interestRateTotal = interestRateTotal + interestRate;
 
@@ -59,7 +68,7 @@ const price = function (options: any) {
                 interestRate: interestRate,
                 admTaxesRate: admTaxesRate,
                 insurence: insurenceResult,
-                installmentValue: installmentValue + insurenceResult.insurenceValue,
+                installmentValue: (hasGracePeriod(gracePeriod, deadline) && index <= gracePeriod ? interestRate : installmentValue) + insurenceResult.insurenceValue,
                 installmentDue: sumInstallmentDue(firstInstallmentDue, index),
                 debitBalance: debitBalance
             }
