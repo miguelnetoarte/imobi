@@ -100,7 +100,7 @@ const sac = function (options: any) {
                 installmentsTotal,
                 amortizationTotal,
                 financedValue: financedAmount + expenses + iofTotal,
-                requestedAmaount: financedAmount,
+                requestedValue: financedAmount,
                 interestRateTotal,
                 table: tables.SAC,
                 annualInterestRate,
