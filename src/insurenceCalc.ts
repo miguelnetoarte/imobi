@@ -1,6 +1,6 @@
-const insurenceCalc = function (debitBalance: number, estateValue: number, mipTaxesRate: number, dfiTaxesRate: number) {
-    let mip: number = debitBalance * mipTaxesRate;
-    let dfi: number = estateValue * dfiTaxesRate;
+const insurenceCalc = function (debitBalance: number, estateValue: number, mipTaxRate: number, dfiTaxRate: number) {
+    let mip: number = debitBalance * mipTaxRate;
+    let dfi: number = estateValue * dfiTaxRate;
     return {
         insurenceValue: mip + dfi,
         mip,

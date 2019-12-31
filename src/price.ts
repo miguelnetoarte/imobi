@@ -23,8 +23,8 @@ const price = function (options: any) {
         financedAmount,
         expenses,
         deadline,
-        annualTaxRate,
-        admTaxesRate,
+        annualInterestRate,
+        administrationTaxesRate,
         insurence,
         gracePeriod,
         firstInstallmentDue
@@ -39,7 +39,7 @@ const price = function (options: any) {
     let installmentsTotal = 0;
     let amortizationTotal = 0;
     let interestRateTotal = 0;
-    let monthTaxesRate = (annualTaxRate / 12) / 100;
+    let monthTaxesRate = (annualInterestRate / 12) / 100;
     let installmentValue = financedValue * (Math.pow(1 + monthTaxesRate, newDeadLine) * monthTaxesRate) / (Math.pow(1 + monthTaxesRate, newDeadLine) - 1)
     let debitBalance = financedValue;
     let summary = {};
@@ -54,7 +54,7 @@ const price = function (options: any) {
         }
 
         debitBalance = calcDebitBalance(debitBalance, amortization);
-        let insurenceResult = insurenceCalc(debitBalance + amortization, insurence.estateValue, insurence.mipTaxesRate, insurence.dfiTaxesRate);
+        let insurenceResult = insurenceCalc(debitBalance + amortization, insurence.estateValue, insurence.mipTaxRate, insurence.dfiTaxRate);
 
         installmentsTotal = installmentsTotal + (hasGracePeriod(gracePeriod, deadline) && index <= gracePeriod ? interestRate : installmentValue);
         amortizationTotal = amortizationTotal + amortization;
@@ -66,7 +66,7 @@ const price = function (options: any) {
                 installment: index,
                 amortization: amortization,
                 interestRate: interestRate,
-                admTaxesRate: admTaxesRate,
+                administrationTaxesRate: administrationTaxesRate,
                 insurence: insurenceResult,
                 installmentValue: (hasGracePeriod(gracePeriod, deadline) && index <= gracePeriod ? interestRate : installmentValue) + insurenceResult.insurenceValue,
                 installmentDue: sumInstallmentDue(firstInstallmentDue, index),
@@ -82,8 +82,8 @@ const price = function (options: any) {
             financedValue,
             interestRateTotal,
             table: tables.PRICE,
-            annualTaxRate,
-            admTaxesRate,
+            annualInterestRate,
+            administrationTaxesRate,
             gracePeriod,
         }
     }
