@@ -43,6 +43,22 @@ const validator = function (options: any) {
     options.gracePeriod = !!options.gracePeriod ? Number(options.gracePeriod) : 0;
     options.firstInstallmentDue = !!options.firstInstallmentDue && options.firstInstallmentDue instanceof Date ? options.firstInstallmentDue : null;
 
+    try {
+
+        if (!!options.iof) {
+            options.ratePerDay = !!options.ratePerDay ? options.ratePerDay : null;
+            options.additionalFee = !!options.additionalFee ? options.additionalFee : null
+
+        } else {
+            options.iof = null;
+        }
+    } catch (e) {
+        throw Error(`param iof is not object, look at example\n
+        "iof": {
+            "ratePerDay": 0.0082,
+            "additionalFee": 0.38
+        }`);
+    }
     return options;
 }
 

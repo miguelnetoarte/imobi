@@ -26,11 +26,18 @@ const calcDaysTotal = function (firstInstallmentDue: Date, currentDeadline: numb
     return diffDays;
 }
 
-const Total = {
+const hasIofTotalPrecision = function (iofTotal: number, totalCumulative: number) {
+    let resultTotal = parseFloat(Number(iofTotal).toFixed(6));
+    let resultcumulative = parseFloat(Number(totalCumulative).toFixed(6));
+    return resultTotal != resultcumulative;
+}
+
+const util = {
     calcInstallmentsTotal,
     calcAmortizationTotal,
     calcInterestRateTotal,
-    calcDaysTotal
+    calcDaysTotal,
+    hasIofTotalPrecision
 }
 
-export = Total;
+export = util;
