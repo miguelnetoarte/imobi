@@ -6,12 +6,12 @@ const calcDebitBalance = function (currentInstallmentNumber: number, financedVal
     return financedValue - ((currentInstallmentNumber - gracePeriod) * amortization);
 }
 
-const calcInterestRate = function (debitBalance: number, amortization: number, annualTaxRate: number) {
-    return (debitBalance + amortization) * ((annualTaxRate / 12)/100);
+const calcInterestRate = function (debitBalance: number, amortization: number, annualInterestRate: number) {
+    return (debitBalance + amortization) * ((annualInterestRate / 12)/100);
 }
 
-const calcInstallment = function (amortization: number, interestRate: number, admTaxesRate: number, insurence: any) {
-    return amortization + interestRate + admTaxesRate + insurence.insurenceValue;
+const calcInstallment = function (amortization: number, interestRate: number, administrationTaxesRate: number, insurence: any) {
+    return amortization + interestRate + administrationTaxesRate + insurence.insurenceValue;
 }
 
 const sac = function (options: any) {
@@ -19,8 +19,8 @@ const sac = function (options: any) {
         financedAmount,
         expenses,
         deadline,
-        annualTaxRate,
-        admTaxesRate,
+        annualInterestRate,
+        administrationTaxesRate,
         insurence,
         gracePeriod,
         firstInstallmentDue
@@ -42,9 +42,9 @@ const sac = function (options: any) {
             amortization = financedValue / deadline;
         }
         let debitBalance = calcDebitBalance(index, financedValue, amortization, gracePeriod);
-        let interestRate = calcInterestRate(debitBalance, amortization, annualTaxRate);
-        let insurenceResult = insurenceCalc(debitBalance + amortization, insurence.estateValue, insurence.mipTaxesRate, insurence.dfiTaxesRate);
-        let installmentValue = calcInstallment(amortization, interestRate, admTaxesRate, insurenceResult);
+        let interestRate = calcInterestRate(debitBalance, amortization, annualInterestRate);
+        let insurenceResult = insurenceCalc(debitBalance + amortization, insurence.estateValue, insurence.mipTaxRate, insurence.dfiTaxRate);
+        let installmentValue = calcInstallment(amortization, interestRate, administrationTaxesRate, insurenceResult);
         let amortizationResult = amortization;
 
         installmentsTotal = installmentsTotal + installmentValue;
@@ -57,7 +57,7 @@ const sac = function (options: any) {
                 installment: index,
                 amortization: amortizationResult,
                 interestRate: interestRate,
-                admTaxesRate: admTaxesRate,
+                administrationTaxesRate: administrationTaxesRate,
                 insurence: insurenceResult,
                 installmentValue: installmentValue,
                 installmentDue: sumInstallmentDue(firstInstallmentDue, index),
@@ -73,8 +73,8 @@ const sac = function (options: any) {
             financedValue,
             interestRateTotal,
             table: tables.SAC,
-            annualTaxRate,
-            admTaxesRate,
+            annualInterestRate,
+            administrationTaxesRate,
             gracePeriod,
         }
     }
