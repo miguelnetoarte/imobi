@@ -38,6 +38,10 @@ const data = imobi.calculator({
         "mipTaxRate": 0.0001737,
         "dfiTaxRate": 0.0001503,
     },
+    "iof": {
+        "ratePerDay": 0.0082,
+        "additionalFee": 0.38
+    },
     "expenses": 0
 });
 
@@ -61,6 +65,10 @@ const data = imobi.calculator({
         "estateValue": 200000,
         "mipTaxRate": 0.0001737,
         "dfiTaxRate": 0.0001503,
+    },
+    "iof": {
+        "ratePerDay": 0.0082,
+        "additionalFee": 0.38
     },
     "expenses": 0
 });

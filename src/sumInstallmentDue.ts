@@ -1,4 +1,4 @@
-const sumInstallmentDue = function (firstInstallmentDue: any, currentDeadline: number) {
+const sumInstallmentDue = function (firstInstallmentDue: Date, currentDeadline: number) {
     if (firstInstallmentDue instanceof Date && currentDeadline === 1) {
         return firstInstallmentDue;
     } else if (firstInstallmentDue instanceof Date && currentDeadline > 1) {

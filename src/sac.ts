@@ -1,6 +1,14 @@
 import insurenceCalc from './insurenceCalc';
 import tables from './tables';
 import sumInstallmentDue from './sumInstallmentDue';
+import iofCalc from './iof';
+
+import {
+    calcInstallmentsTotal,
+    calcAmortizationTotal,
+    calcInterestRateTotal,
+    calcDaysTotal
+} from './Total';
 
 const calcDebitBalance = function (currentInstallmentNumber: number, financedValue: number, amortization: number, gracePeriod: number) {
     return financedValue - ((currentInstallmentNumber - gracePeriod) * amortization);
@@ -23,18 +31,21 @@ const sac = function (options: any) {
         administrationTaxesRate,
         insurence,
         gracePeriod,
-        firstInstallmentDue
+        firstInstallmentDue,
+        iof
     } = options;
 
     let newDeadLine = gracePeriod > 0 && gracePeriod < deadline ? deadline - gracePeriod : deadline;
     let installments = {};
-    let financedValue = financedAmount + expenses;
     let amortization = 0;
     let installmentsTotal = 0;
     let amortizationTotal = 0;
     let interestRateTotal = 0;
+    let iofTotal = 0;
+    let daysTotal = 0;
     let summary = {};
-
+    
+        let financedValue = financedAmount + expenses + iofTotal;
     for (let index = 1; index <= deadline; index++) {
         if (gracePeriod > 0 && index > gracePeriod && gracePeriod < deadline) {
             amortization = financedValue / newDeadLine;
@@ -50,6 +61,9 @@ const sac = function (options: any) {
         installmentsTotal = installmentsTotal + installmentValue;
         amortizationTotal = amortizationTotal + amortizationResult;
         interestRateTotal = interestRateTotal + interestRate;
+        daysTotal = calcDaysTotal(firstInstallmentDue, index);
+        let iofValue = iofCalc(amortization, daysTotal, iof);
+        iofTotal = iofTotal + iofValue;
 
         installments = {
             ...installments,
@@ -61,7 +75,10 @@ const sac = function (options: any) {
                 insurence: insurenceResult,
                 installmentValue: installmentValue,
                 installmentDue: sumInstallmentDue(firstInstallmentDue, index),
+                daysTotal: daysTotal,
+                iofValue: iofValue,
                 debitBalance: debitBalance
+
             }
         }
 
@@ -76,6 +93,8 @@ const sac = function (options: any) {
             annualInterestRate,
             administrationTaxesRate,
             gracePeriod,
+            daysTotal: daysTotal,
+            iofTotal
         }
     }
     return summary;

@@ -18,6 +18,10 @@ const validator = function (options: any) {
             "mipTaxRate": 0.0001737,
             "dfiTaxRate": 0.0001503,
         },
+        "iof": {
+            "ratePerDay": 0.0082,
+            "additionalFee": 0.38
+        },
         "expenses": 0
     })
     or you can read documentation in ${doc}\n\n`);
