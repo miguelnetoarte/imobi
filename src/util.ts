@@ -30,6 +30,8 @@ const calcDaysTotal = function (firstInstallmentDue: Date, currentDeadline: numb
         if (diffDays >= 366) {
             diffDays -= 1;
         }
+    } else {
+        diffDays = 365;
     }
     return diffDays;
 }
