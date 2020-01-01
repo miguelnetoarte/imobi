@@ -4,6 +4,7 @@ Calculadora para sistemas de amortizações
 
  - [SAC](#sistema-de-amortização-constante-sac)
  - [PRICE](#sistema-frânces-de-amortização-price)
+ - [SAA](#sistema-de-amortização-americano-saa)
 
 
 ## Objeto de parâmetro para cálculo
@@ -54,31 +55,7 @@ const data = imobi.calculator({
 
 ```
 
-## Sistema frânces de amortização (PRICE)
-
-```js
-
-import imobi from 'imobi';
-
-const data = imobi.calculator({
-    "table": "PRICE",
-    "financedAmount": 150000,
-    "deadline": 5,
-    "annualInterestRate": 0.72,
-    "administrationTaxesRate": 25,
-    "gracePeriod": 2,
-    "firstInstallmentDue": new Date("2020-01-12"),
-    "insurence": {
-        "estateValue": 200000,
-        "mipTaxRate": 0.0001737,
-        "dfiTaxRate": 0.0001503,
-    },
-    "expenses": 0
-});
-
-```
-
-## Objeto de resposta
+## parâmetros de resposa para operação SAC
 
 | Atributo                | Tipo   | Descrição                                |
 |-------------------------|--------|------------------------------------------|
@@ -106,3 +83,58 @@ const data = imobi.calculator({
 | gracePeriod             | number | periodo de carencia                      |
 | cumulativeDaysForIof    | number | dias acumulados para IOF                 |
 | iofTotal                | number | total do IOF                             |
+
+## Sistema frânces de amortização (PRICE)
+
+```js
+
+import imobi from 'imobi';
+
+const data = imobi.calculator({
+    "table": "PRICE",
+    "financedAmount": 150000,
+    "deadline": 5,
+    "annualInterestRate": 0.72,
+    "administrationTaxesRate": 25,
+    "gracePeriod": 2,
+    "firstInstallmentDue": new Date("2020-01-12"),
+    "insurence": {
+        "estateValue": 200000,
+        "mipTaxRate": 0.0001737,
+        "dfiTaxRate": 0.0001503,
+    },
+    "expenses": 0
+});
+
+```
+
+## parâmetros de resposa para operação PRICE
+
+| Atributo                | Tipo   | Descrição                                |
+|-------------------------|--------|------------------------------------------|
+| installments            | object | objeto com dados das prestações          |
+| installment             | number | número da prestação                      |
+| amortization            | number | valor da amortização                     |
+| interestRate            | number | valor do juros                           |
+| administrationTaxesRate | number | taxa de administração                    |
+| insurence               | object | objeto com dados do seguro               |
+| insurenceValue          | number | valor do seguro                          |
+| mip                     | number | valor do MIP                             |
+| dfi                     | number | valor do DFI                             |
+| installmentValue        | number | valor da prestação                       |
+| installmentDue          | number | vencimento do valor devido               |
+| debitBalance            | number | valor do saldo devido                    |
+| deadline                | number | prazo calculado                          |
+| installmentsTotal       | number | total do saldo devido                    |
+| amortizationTotal       | number | total de amortização                     |
+| financedValue           | number | valor financiado + iof + despesas        |
+| requestedValue          | number | valor financiado                         |
+| interestRateTotal       | number | total de juros calculado                 |
+| table                   | string | tabela utilizada para calculo            |
+| annualInterestRate      | number | taxa anual de juros utilizada no cálculo |
+| administrationTaxesRate | number | taxa de administração                    |
+| gracePeriod             | number | periodo de carencia                      |
+
+## Sistema de amortização americano (SAA)
+
+Em desenvolvimento
