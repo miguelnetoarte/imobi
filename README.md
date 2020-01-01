@@ -38,6 +38,10 @@ const data = imobi.calculator({
         "mipTaxRate": 0.0001737,
         "dfiTaxRate": 0.0001503,
     },
+    "iof": {
+        "ratePerDay": 0.0082,
+        "additionalFee": 0.38
+    },
     "expenses": 0
 });
 
@@ -86,9 +90,12 @@ const data = imobi.calculator({
 | deadline                | number | prazo calculado                          |
 | installmentsTotal       | number | total do saldo devido                    |
 | amortizationTotal       | number | total de amortização                     |
-| financedValue           | number | valor financiado                         |
+| financedValue           | number | valor financiado + iof + despesas        |
+| requestedValue          | number | valor financiado                         |
 | interestRateTotal       | number | total de juros calculado                 |
 | table                   | string | tabela utilizada para calculo            |
 | annualInterestRate      | number | taxa anual de juros utilizada no cálculo |
 | administrationTaxesRate | number | taxa de administração                    |
 | gracePeriod             | number | periodo de carencia                      |
+| cumulativeDaysForIof    | number | dias acumulados para iof                 |
+| iofTotal                | number | total do iof                             |
