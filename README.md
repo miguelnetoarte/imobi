@@ -18,6 +18,9 @@ Calculadora de tabelas para financiamento imobiliário
 | dfiTaxRate              | number | Alíquota para cálculo de Danos físicos ao imóvel (DFI)        | opcional     |
 | mipTaxRate              | number | Alíquota para cálculo de Morte por invalidez permanente (MIP) | opcional     |
 | estateValue             | number | Valor do imóvel para cálculo do seguro                        | opcional     |
+| iof                     | object | Objeto com alíquotas para cálculo do IOF  (price em dev)      | opcional     |
+| ratePerDay              | number | Alíquota diária                                               | opcional     |
+| additionalFee           | number | Alíquota adicional                                            | opcional     |
 
 ## Sistema de amortização constante (SAC)
 
@@ -97,5 +100,5 @@ const data = imobi.calculator({
 | annualInterestRate      | number | taxa anual de juros utilizada no cálculo |
 | administrationTaxesRate | number | taxa de administração                    |
 | gracePeriod             | number | periodo de carencia                      |
-| cumulativeDaysForIof    | number | dias acumulados para iof                 |
-| iofTotal                | number | total do iof                             |
+| cumulativeDaysForIof    | number | dias acumulados para IOF                 |
+| iofTotal                | number | total do IOF                             |
