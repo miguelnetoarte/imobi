@@ -7,7 +7,7 @@ const calcAmortizationTotal = function (amortizationTotal: number, amortizationR
 }
 
 const calcInterestRateTotal = function (interestRateTotal: number, interestRate: number) {
-    return  interestRateTotal + interestRate;
+    return interestRateTotal + interestRate;
 }
 
 const calcDaysTotal = function (firstInstallmentDue: Date, currentDeadline: number) {
@@ -24,8 +24,6 @@ const calcDaysTotal = function (firstInstallmentDue: Date, currentDeadline: numb
             date2.setMonth(date1.getMonth() + currentDeadline);
             date2.setDate(date2.getDate());
         }
-
-        console.log(date1.toLocaleDateString(), date2.toLocaleDateString());
 
         let timeDiff = Math.abs(date2.getTime() - date1.getTime());
         diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
