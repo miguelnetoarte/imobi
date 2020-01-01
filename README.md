@@ -6,7 +6,7 @@ Calculadora para sistemas de amortizações
  - [SAC](#sistema-de-amortização-constante-sac)
  - [PRICE](#sistema-frânces-de-amortização-price)
 
-# Instalação
+## Instalação
 
 `npm i imobi` or `yarn add imobi`
 
