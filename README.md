@@ -55,7 +55,7 @@ const data = imobi.calculator({
 
 ```
 
-## parâmetros de resposa para operação SAC
+## Resposa da operação SAC
 
 | Atributo                | Tipo   | Descrição                                |
 |-------------------------|--------|------------------------------------------|
@@ -108,7 +108,7 @@ const data = imobi.calculator({
 
 ```
 
-## parâmetros de resposa para operação PRICE
+## Resposa da operação PRICE
 
 | Atributo                | Tipo   | Descrição                                |
 |-------------------------|--------|------------------------------------------|
