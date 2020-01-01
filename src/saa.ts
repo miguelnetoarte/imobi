@@ -1,16 +1,13 @@
-import insurenceCalc from './insurenceCalc';
 import tables from './tables';
 import sumInstallmentDue from './sumInstallmentDue';
 
 import {
     calcInstallmentsTotal,
     calcAmortizationTotal,
-    calcInterestRateTotal,
-    calcDaysTotal,
-    hasIofTotalPrecision
+    calcInterestRateTotal
 } from './util';
 
-const calcInterestRate = function (debitBalance: number, amortization: number, annualInterestRate: number) {
+const calcInterestRate = function (debitBalance: number, annualInterestRate: number) {
     return debitBalance * ((annualInterestRate / 12) / 100);
 }
 
@@ -19,7 +16,6 @@ const saa = function (options: any) {
         financedAmount,
         deadline,
         annualInterestRate,
-        gracePeriod,
         firstInstallmentDue,
     } = options;
 
@@ -35,7 +31,7 @@ const saa = function (options: any) {
     for (let index = 1; index <= deadline; index++) {
         
         if (index === deadline) amortization = financedValue;
-        let interestRate = calcInterestRate(financedValue, amortization, annualInterestRate);
+        let interestRate = calcInterestRate(financedValue, annualInterestRate);
         let installmentValue = (index === deadline) ? amortization + interestRate : interestRate;
         let debitBalance =  (index === deadline) ? financedValue - amortization : financedValue;
         installmentsTotal = calcInstallmentsTotal(installmentsTotal, installmentValue);
