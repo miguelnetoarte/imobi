@@ -12,15 +12,25 @@ const calcInterestRateTotal = function (interestRateTotal: number, interestRate:
 
 const calcDaysTotal = function (firstInstallmentDue: Date, currentDeadline: number) {
     let diffDays = 0;
+    let date1 = firstInstallmentDue ? new Date(firstInstallmentDue.toDateString()) : new Date();
+    let date2 = firstInstallmentDue ? new Date(firstInstallmentDue.toDateString()) : new Date();
+
     if (currentDeadline <= 12 && currentDeadline > 0) {
-        let date1 = firstInstallmentDue ? new Date(firstInstallmentDue.toDateString()) : new Date();
-        let date2 = firstInstallmentDue ? new Date(firstInstallmentDue.toDateString()) : new Date();
-        date2.setMonth(date1.getMonth() + currentDeadline);
-        date2.setDate(date2.getDate());
+
+        if (firstInstallmentDue instanceof Date) {
+            date1.setMonth(date1.getMonth() - currentDeadline);
+            date1.setDate(date1.getDate());
+        } else {
+            date2.setMonth(date1.getMonth() + currentDeadline);
+            date2.setDate(date2.getDate());
+        }
+
+        console.log(date1.toLocaleDateString(), date2.toLocaleDateString());
+
         let timeDiff = Math.abs(date2.getTime() - date1.getTime());
         diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        if (diffDays <= 366) {
-            diffDays -= 1; 
+        if (diffDays >= 366) {
+            diffDays -= 1;
         }
     }
     return diffDays;
