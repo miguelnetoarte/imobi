@@ -7,7 +7,6 @@
 
 # testing
 /coverage
-/lib
 /src
 .git
 # production
