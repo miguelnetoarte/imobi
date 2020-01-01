@@ -2,10 +2,13 @@
 
 Calculadora para sistemas de amortizações
 
+ - [SAA](#sistema-de-amortização-americano-saa)
  - [SAC](#sistema-de-amortização-constante-sac)
  - [PRICE](#sistema-frânces-de-amortização-price)
- - [SAA](#sistema-de-amortização-americano-saa)
 
+# Instalação
+
+`npm i imobi` or `yarn add imobi`
 
 ## Objeto de parâmetro para cálculo
 
@@ -137,4 +140,38 @@ const data = imobi.calculator({
 
 ## Sistema de amortização americano (SAA)
 
-Em desenvolvimento
+```js
+
+import imobi from 'imobi';
+
+const data = imobi.calculator({
+    "table": "SAA",
+    "financedAmount": 50000,
+    "deadline": 7,
+    "annualInterestRate": 24,
+    "administrationTaxesRate": 0,
+    "gracePeriod": 0,
+    "firstInstallmentDue": new Date("2020-01-12"),
+    "expenses": 0
+})
+
+```
+
+## Resposa da operação SAA
+
+| Atributo                | Tipo   | Descrição                                |
+|-------------------------|--------|------------------------------------------|
+| installments            | object | objeto com dados das prestações          |
+| installment             | number | número da prestação                      |
+| amortization            | number | valor da amortização                     |
+| interestRate            | number | valor do juros                           |
+| installmentValue        | number | valor da prestação                       |
+| installmentDue          | number | vencimento do valor devido               |
+| debitBalance            | number | valor do saldo devido                    |
+| deadline                | number | prazo calculado                          |
+| installmentsTotal       | number | total do saldo devido                    |
+| amortizationTotal       | number | total de amortização                     |
+| requestedValue          | number | valor financiado                         |
+| interestRateTotal       | number | total de juros calculado                 |
+| table                   | string | tabela utilizada para calculo            |
+| annualInterestRate      | number | taxa anual de juros utilizada no cálculo |
