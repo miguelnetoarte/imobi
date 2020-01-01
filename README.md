@@ -2,9 +2,8 @@
 
 Calculadora para sistemas de amortizações
 
- [SAC](#sistema-de-amortização-constante-sac)
-
- [PRICE](#sistema-frânces-de-amortização-price)
+ - [SAC](#sistema-de-amortização-constante-sac)
+ - [PRICE](#sistema-frânces-de-amortização-price)
 
 
 ## Objeto de parâmetro para cálculo
