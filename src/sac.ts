@@ -38,8 +38,10 @@ const sac = function (options: any) {
 
     let newDeadLine = gracePeriod > 0 && gracePeriod < deadline ? deadline - gracePeriod : deadline;
     let iofBoo = 0;
-    let summary: any = {
-        iofTotal: 0
+    let data: any = {
+        summary: {
+            iofTotal: 0
+        }
     };
     let iofTotalCumulative = 0;
     let iofTotal = 0;
@@ -52,6 +54,11 @@ const sac = function (options: any) {
         let interestRateTotal = 0;
         let daysTotal = 0;
         let cumulativeDaysForIofTotal = 0;
+        let insurenceTotal = {
+            total: 0,
+            mipTotal: 0,
+            dfiTotal: 0
+        };
 
         let financedValue = financedAmount + expenses + iofTotalCumulative;
 
@@ -76,6 +83,9 @@ const sac = function (options: any) {
             iofTotal = iofTotal + iofValue;
             if (daysTotal > 0) cumulativeDaysForIofTotal = daysTotal;
 
+            insurenceTotal.total = insurenceTotal.total + insurenceResult.insurenceValue;
+            insurenceTotal.mipTotal = insurenceTotal.mipTotal + insurenceResult.mip;
+            insurenceTotal.dfiTotal = insurenceTotal.dfiTotal + insurenceResult.dfi;
 
             installments = {
                 ...installments,
@@ -94,27 +104,31 @@ const sac = function (options: any) {
                 }
             }
 
-            summary = {
+            data = {
+                ...data,
                 installments,
-                deadline,
-                installmentsTotal,
-                amortizationTotal,
-                financedValue: financedAmount + expenses + iofTotal,
-                requestedValue: financedAmount,
-                interestRateTotal,
-                table: tables.SAC,
-                annualInterestRate,
-                administrationTaxesRate,
-                gracePeriod,
-                cumulativeDaysForIof: cumulativeDaysForIofTotal,
-                iofTotal
+                summary: {
+                    ...data.summary,
+                    requestedValue: financedAmount,
+                    financedValue: financedAmount + expenses + iofTotal,
+                    amortizationTotal,
+                    interestRateTotal,
+                    installmentsTotal,
+                    cumulativeDaysForIof: cumulativeDaysForIofTotal,
+                    iofTotal,
+                    expenses,
+                    insurenceTotal
+                },
+                parameters: {
+                    ...options
+                }
             }
         }
 
-        iofTotalCumulative = summary.iofTotal;
+        iofTotalCumulative = data.summary.iofTotal;
         iofBoo++;
     } while (iof && hasIofTotalPrecision(iofTotal, iofTotalCumulative) || iofBoo <= 2);
-    return summary;
+    return data;
 }
 
 export = sac;
