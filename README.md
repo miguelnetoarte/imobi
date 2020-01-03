@@ -77,18 +77,20 @@ const data = imobi.calculator({
 | installmentValue        | number | valor da prestação                       |
 | installmentDue          | number | vencimento do valor devido               |
 | debitBalance            | number | valor do saldo devido                    |
-| deadline                | number | prazo calculado                          |
+| summary                 | object | sumário dos valores totais               |
 | installmentsTotal       | number | total do saldo devido                    |
 | amortizationTotal       | number | total de amortização                     |
+| iofTotal                | number | total do IOF                             |
 | financedValue           | number | valor financiado + IOF + despesas        |
 | requestedValue          | number | valor financiado                         |
 | interestRateTotal       | number | total de juros calculado                 |
+| cumulativeDaysForIof    | number | dias acumulados para IOF                 |
+| parameters              | object | parâmetros de entrada                    |
+| deadline                | number | prazo calculado                          |
 | table                   | string | tabela utilizada para calculo            |
 | annualInterestRate      | number | taxa anual de juros utilizada no cálculo |
 | administrationTaxesRate | number | taxa de administração                    |
 | gracePeriod             | number | periodo de carencia                      |
-| cumulativeDaysForIof    | number | dias acumulados para IOF                 |
-| iofTotal                | number | total do IOF                             |
 
 ## Sistema frânces de amortização (PRICE)
 
@@ -108,6 +110,10 @@ const data = imobi.calculator({
         "estateValue": 200000,
         "mipTaxRate": 0.0001737,
         "dfiTaxRate": 0.0001503,
+    },
+     "iof": {
+        "ratePerDay": 0.0082,
+        "additionalFee": 0.38
     },
     "expenses": 0
 });
@@ -130,13 +136,15 @@ const data = imobi.calculator({
 | installmentValue        | number | valor da prestação                       |
 | installmentDue          | number | vencimento do valor devido               |
 | debitBalance            | number | valor do saldo devido                    |
-| deadline                | number | prazo calculado                          |
+| summary                 | object | sumário dos valores totais               |
 | installmentsTotal       | number | total do saldo devido                    |
 | amortizationTotal       | number | total de amortização                     |
 | financedValue           | number | valor financiado + IOF + despesas        |
 | requestedValue          | number | valor financiado                         |
 | interestRateTotal       | number | total de juros calculado                 |
+| parameters              | object | parâmetros de entrada                    |
 | table                   | string | tabela utilizada para calculo            |
+| deadline                | number | prazo calculado                          |
 | annualInterestRate      | number | taxa anual de juros utilizada no cálculo |
 | administrationTaxesRate | number | taxa de administração                    |
 | gracePeriod             | number | periodo de carencia                      |
@@ -171,10 +179,12 @@ const data = imobi.calculator({
 | installmentValue        | number | valor da prestação                       |
 | installmentDue          | number | vencimento do valor devido               |
 | debitBalance            | number | valor do saldo devido                    |
-| deadline                | number | prazo calculado                          |
+| summary                 | object | sumário dos valores totais               |
 | installmentsTotal       | number | total do saldo devido                    |
 | amortizationTotal       | number | total de amortização                     |
 | requestedValue          | number | valor financiado                         |
 | interestRateTotal       | number | total de juros calculado                 |
+| parameters              | object | parâmetros de entrada                    |
 | table                   | string | tabela utilizada para calculo            |
+| deadline                | number | prazo calculado                          |
 | annualInterestRate      | number | taxa anual de juros utilizada no cálculo |
