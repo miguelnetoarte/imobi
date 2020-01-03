@@ -2,13 +2,16 @@
 
 Calculadora para sistemas de amortizações
 
+## Instalação
+
+`npm i imobi` or `yarn add imobi`
+
+## Tabelas
+
  - [SAA](#sistema-de-amortização-americano-saa)
  - [SAC](#sistema-de-amortização-constante-sac)
  - [PRICE](#sistema-frânces-de-amortização-price)
 
-## Instalação
-
-`npm i imobi` or `yarn add imobi`
 
 ## Objeto de parâmetro para cálculo
 
@@ -40,7 +43,7 @@ const data = imobi.calculator({
     "table": "SAC",
     "financedAmount": 150000,
     "deadline": 5,
-    "annualInterestRate": 0.72,
+    "annualInterestRate": 7.7,
     "administrationTaxesRate": 25,
     "gracePeriod": 2,
     "firstInstallmentDue": new Date("2020-01-12"),
@@ -77,7 +80,7 @@ const data = imobi.calculator({
 | deadline                | number | prazo calculado                          |
 | installmentsTotal       | number | total do saldo devido                    |
 | amortizationTotal       | number | total de amortização                     |
-| financedValue           | number | valor financiado + iof + despesas        |
+| financedValue           | number | valor financiado + IOF + despesas        |
 | requestedValue          | number | valor financiado                         |
 | interestRateTotal       | number | total de juros calculado                 |
 | table                   | string | tabela utilizada para calculo            |
@@ -97,7 +100,7 @@ const data = imobi.calculator({
     "table": "PRICE",
     "financedAmount": 150000,
     "deadline": 5,
-    "annualInterestRate": 0.72,
+    "annualInterestRate": 5,
     "administrationTaxesRate": 25,
     "gracePeriod": 2,
     "firstInstallmentDue": new Date("2020-01-12"),
@@ -130,7 +133,7 @@ const data = imobi.calculator({
 | deadline                | number | prazo calculado                          |
 | installmentsTotal       | number | total do saldo devido                    |
 | amortizationTotal       | number | total de amortização                     |
-| financedValue           | number | valor financiado + iof + despesas        |
+| financedValue           | number | valor financiado + IOF + despesas        |
 | requestedValue          | number | valor financiado                         |
 | interestRateTotal       | number | total de juros calculado                 |
 | table                   | string | tabela utilizada para calculo            |
@@ -148,7 +151,7 @@ const data = imobi.calculator({
     "table": "SAA",
     "financedAmount": 50000,
     "deadline": 7,
-    "annualInterestRate": 24,
+    "annualInterestRate": 9.5,
     "administrationTaxesRate": 0,
     "gracePeriod": 0,
     "firstInstallmentDue": new Date("2020-01-12"),

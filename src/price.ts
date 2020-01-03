@@ -29,9 +29,7 @@ const price = function (options: any) {
         gracePeriod,
         firstInstallmentDue
     } = options;
-    /**
-     * todo: carencia em desenvolvimento
-     */
+
     let newDeadLine = hasGracePeriod(gracePeriod, deadline) ? deadline - gracePeriod : deadline;
     let installments = {};
     let financedValue = financedAmount + expenses;

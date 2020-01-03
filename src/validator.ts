@@ -46,8 +46,8 @@ const validator = function (options: any) {
     try {
 
         if (!!options.iof) {
-            options.ratePerDay = !!options.ratePerDay ? options.ratePerDay : null;
-            options.additionalFee = !!options.additionalFee ? options.additionalFee : null
+            options.iof.ratePerDay = !!options.iof.ratePerDay ? options.iof.ratePerDay : null;
+            options.iof.additionalFee = !!options.iof.additionalFee ? options.iof.additionalFee : null
 
         } else {
             options.iof = null;
