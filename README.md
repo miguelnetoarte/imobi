@@ -4,7 +4,7 @@ Calculadora para sistemas de amortizações
 
 ## Instalação
 
-`npm i imobi` or `yarn add imobi`
+`npm i imobi` ou `yarn add imobi`
 
 ## Tabelas
 
